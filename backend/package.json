@@ -8,6 +8,7 @@
     "dev": "nodemon server.js"
   },
   "dependencies": {
+    "better-sqlite3": "^12.11.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2"
@@ -15,6 +16,11 @@
   "devDependencies": {
     "nodemon": "^3.1.9"
   },
-  "keywords": ["cadmech", "assessment", "equipment-manager", "api"],
+  "keywords": [
+    "cadmech",
+    "assessment",
+    "equipment-manager",
+    "api"
+  ],
   "license": "ISC"
 }
