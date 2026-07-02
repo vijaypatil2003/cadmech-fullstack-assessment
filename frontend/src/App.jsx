@@ -5,6 +5,7 @@ import EquipmentTable from "./components/EquipmentTable";
 import EquipmentForm from "./components/EquipmentForm";
 import DeleteModal from "./components/DeleteModal";
 import toast from "react-hot-toast";
+import ViewModal from "./components/ViewModal";
 
 export default function App() {
   const [filters, setFilters] = useState({ search: "", type: "", status: "" });
@@ -12,6 +13,7 @@ export default function App() {
   const [editingEquipment, setEditingEquipment] = useState(null);
   const [deletingEquipment, setDeletingEquipment] = useState(null);
   const [deleting, setDeleting] = useState(false);
+  const [viewingEquipment, setViewingEquipment] = useState(null);
 
   const {
     equipment,
@@ -117,6 +119,7 @@ export default function App() {
             onEdit={handleEdit}
             onDelete={handleDeleteClick}
             onAdd={handleAdd}
+            onView={(item) => setViewingEquipment(item)}
           />
         </div>
       </main>
@@ -143,6 +146,14 @@ export default function App() {
           onConfirm={handleDeleteConfirm}
           onCancel={() => setDeletingEquipment(null)}
           deleting={deleting}
+        />
+      )}
+
+      {viewingEquipment && (
+        <ViewModal
+          equipment={viewingEquipment}
+          onClose={() => setViewingEquipment(null)}
+          onEdit={handleEdit}
         />
       )}
     </div>

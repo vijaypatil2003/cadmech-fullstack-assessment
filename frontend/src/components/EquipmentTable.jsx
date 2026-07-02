@@ -25,6 +25,7 @@ export default function EquipmentTable({
   onEdit,
   onDelete,
   onAdd,
+  onView,
 }) {
   if (error) {
     return (
@@ -137,6 +138,12 @@ export default function EquipmentTable({
                   </td>
                   <td className="px-4 py-3 text-right">
                     <div className="flex gap-2 justify-end">
+                      <button
+                        onClick={() => onView(item)}
+                        className="text-gray-600 hover:text-gray-800 text-xs font-medium"
+                      >
+                        View
+                      </button>{" "}
                       <button
                         onClick={() => onEdit(item)}
                         className="text-blue-600 hover:text-blue-800 text-xs font-medium"
