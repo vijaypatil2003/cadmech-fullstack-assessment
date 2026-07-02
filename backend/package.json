@@ -1,6 +1,7 @@
 {
   "name": "cadmech-equipment-api",
   "version": "1.0.0",
+  "homepage": "https://vijaypatil2003.github.io/cadmech-fullstack-assessment",
   "description": "SmartLab Equipment Manager - CADMech Assessment Backend API",
   "main": "server.js",
   "scripts": {
