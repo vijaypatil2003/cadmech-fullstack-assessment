@@ -122,7 +122,7 @@ export default function EquipmentTable({
                   <td className="px-4 py-3 text-gray-600">{item.type}</td>
                   <td className="px-4 py-3">
                     <span
-                      className={`px-2 py-1 rounded-full text-xs font-medium ${STATUS_COLORS[item.status]}`}
+                      className={`px-2 py-1 rounded-full text-xs font-medium whitespace-nowrap ${STATUS_COLORS[item.status]}`}
                     >
                       {item.status}
                     </span>
