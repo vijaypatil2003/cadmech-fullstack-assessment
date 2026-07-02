@@ -115,7 +115,12 @@ export default function EquipmentTable({
             </thead>
             <tbody className="divide-y divide-gray-100">
               {equipment.map((item) => (
-                <tr key={item.id} className="hover:bg-gray-50">
+                <tr
+                  key={item.id}
+                  className="hover:bg-gray-50 cursor-pointer"
+                  onClick={() => onView(item)}
+                >
+                  {" "}
                   <td className="px-4 py-3 font-medium text-gray-900">
                     {item.name}
                   </td>
