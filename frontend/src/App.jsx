@@ -75,10 +75,10 @@ export default function App() {
           <div>
             <div className="flex items-center gap-3">
               <img
-                src="/cadmech-logo.png"
+                src={`${import.meta.env.BASE_URL}cadmech-logo.png`}
                 alt="CADMech Logo"
                 className="h-8 w-auto"
-              />
+              />  
               <h1 className="text-xl font-semibold tracking-tight">
                 SmartLab Equipment Manager
               </h1>
