@@ -7,8 +7,14 @@ const {
 const { ConflictError, NotFoundError } = require("../utils/AppError");
 
 function listEquipment(queryParams) {
-  const { search, type, status } = queryParams;
-  return equipmentModel.getAllEquipment({ search, type, status });
+  const { search, type, status, date_from, date_to } = queryParams;
+  return equipmentModel.getAllEquipment({
+    search,
+    type,
+    status,
+    date_from,
+    date_to,
+  });
 }
 
 function getEquipment(id) {
