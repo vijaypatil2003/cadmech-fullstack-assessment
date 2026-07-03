@@ -8,7 +8,13 @@ import toast from "react-hot-toast";
 import ViewModal from "./components/ViewModal";
 
 export default function App() {
-  const [filters, setFilters] = useState({ search: "", type: "", status: "" });
+  const [filters, setFilters] = useState({
+    search: "",
+    type: "",
+    status: "",
+    date_from: "",
+    date_to: "",
+  });
   const [showForm, setShowForm] = useState(false);
   const [editingEquipment, setEditingEquipment] = useState(null);
   const [deletingEquipment, setDeletingEquipment] = useState(null);
@@ -78,7 +84,7 @@ export default function App() {
                 src={`${import.meta.env.BASE_URL}cadmech-logo.png`}
                 alt="CADMech Logo"
                 className="h-8 w-auto"
-              />  
+              />
               <h1 className="text-xl font-semibold tracking-tight">
                 SmartLab Equipment Manager
               </h1>

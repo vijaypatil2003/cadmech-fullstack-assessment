@@ -38,15 +38,15 @@ export default function EquipmentTable({
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
-        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto flex-wrap">
           <input
             type="text"
-            placeholder="Search by name..."
+            placeholder="Search by name, serial no. or location..."
             value={filters.search}
             onChange={(e) =>
               onFilterChange({ ...filters, search: e.target.value })
             }
-            className="border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-56"
+            className="border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-64"
           />
           <select
             value={filters.type}
@@ -76,6 +76,32 @@ export default function EquipmentTable({
               </option>
             ))}
           </select>
+          <div className="flex items-center gap-2">
+            <label className="text-xs text-gray-500 whitespace-nowrap">
+              From
+            </label>
+            <input
+              type="date"
+              value={filters.date_from}
+              onChange={(e) =>
+                onFilterChange({ ...filters, date_from: e.target.value })
+              }
+              className="border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            <label className="text-xs text-gray-500 whitespace-nowrap">
+              To
+            </label>
+            <input
+              type="date"
+              value={filters.date_to}
+              onChange={(e) =>
+                onFilterChange({ ...filters, date_to: e.target.value })
+              }
+              className="border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
         </div>
         <button
           onClick={onAdd}
@@ -99,7 +125,9 @@ export default function EquipmentTable({
             <thead className="bg-gray-50 text-gray-600 uppercase text-xs tracking-wide">
               <tr>
                 <th className="px-4 py-3 text-left">Name</th>
-                <th className="px-4 py-3 text-left">Type</th>
+                <th className="px-4 py-3 text-left hidden sm:table-cell">
+                  Type
+                </th>
                 <th className="px-4 py-3 text-left">Status</th>
                 <th className="px-4 py-3 text-left hidden md:table-cell">
                   Location
@@ -120,11 +148,12 @@ export default function EquipmentTable({
                   className="hover:bg-gray-50 cursor-pointer"
                   onClick={() => onView(item)}
                 >
-                  {" "}
                   <td className="px-4 py-3 font-medium text-gray-900">
                     {item.name}
                   </td>
-                  <td className="px-4 py-3 text-gray-600">{item.type}</td>
+                  <td className="px-4 py-3 text-gray-600 hidden sm:table-cell">
+                    {item.type}
+                  </td>
                   <td className="px-4 py-3">
                     <span
                       className={`px-2 py-1 rounded-full text-xs font-medium whitespace-nowrap ${STATUS_COLORS[item.status]}`}
@@ -144,19 +173,28 @@ export default function EquipmentTable({
                   <td className="px-4 py-3 text-right">
                     <div className="flex gap-2 justify-end">
                       <button
-                        onClick={() => onView(item)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onView(item);
+                        }}
                         className="text-gray-600 hover:text-gray-800 text-xs font-medium"
                       >
                         View
-                      </button>{" "}
+                      </button>
                       <button
-                        onClick={() => onEdit(item)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onEdit(item);
+                        }}
                         className="text-blue-600 hover:text-blue-800 text-xs font-medium"
                       >
                         Edit
                       </button>
                       <button
-                        onClick={() => onDelete(item)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onDelete(item);
+                        }}
                         className="text-red-600 hover:text-red-800 text-xs font-medium"
                       >
                         Delete

@@ -18,6 +18,8 @@ export function useEquipment(filters = {}) {
     if (params.search) query.append("search", params.search);
     if (params.type) query.append("type", params.type);
     if (params.status) query.append("status", params.status);
+    if (params.date_from) query.append("date_from", params.date_from);
+    if (params.date_to) query.append("date_to", params.date_to);
     return query.toString();
   };
 
@@ -35,7 +37,13 @@ export function useEquipment(filters = {}) {
     } finally {
       setLoading(false);
     }
-  }, [filters.search, filters.type, filters.status]);
+  }, [
+    filters.search,
+    filters.type,
+    filters.status,
+    filters.date_from,
+    filters.date_to,
+  ]);
 
   const fetchStats = useCallback(async () => {
     try {
