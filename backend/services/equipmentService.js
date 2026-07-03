@@ -50,6 +50,7 @@ function updateEquipment(id, payload) {
     payload.serial_number &&
     payload.serial_number !== existing.serial_number
   ) {
+    // only check uniqueness if serial_number actually changed — avoids false 409 on same-value update
     const duplicate = equipmentModel.findBySerialNumber(payload.serial_number);
     if (duplicate) {
       throw new ConflictError(

@@ -12,6 +12,7 @@ db.pragma("foreign_keys = ON");
 function loadSqliteSchema() {
   const fullSchema = fs.readFileSync(SCHEMA_PATH, "utf8");
 
+  // schema.sql contains MySQL and PostgreSQL variants too - slice only the SQLite block
   const startMarker = "CREATE TABLE IF NOT EXISTS equipment";
   const endMarker = "OPTION 2: MySQL";
 
@@ -32,6 +33,7 @@ function initSchema() {
     )
     .get();
 
+  // skip if table exists - prevents duplicate seed inserts on server restart
   if (equipmentTableExists) return;
 
   const sqliteSchema = loadSqliteSchema();
